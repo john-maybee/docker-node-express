@@ -1,6 +1,6 @@
 version: "3.8" # docker compose version
 services:
-  server:
+  server: # name of the service
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,12 +10,12 @@ services:
       - "5004:5004"
     # Run postgres before the server
     depends_on:
-      - postgres
+      - postgres-test
     # Environment variables (e.g. process.env.PORT)
     environment:
       PORT: 5004
       DATABASE_URL: postgres://todoapp:pass@postgres/todos
-  postgres:
+  postgres-test:
     image: postgres:15
     expose:
       - "5432"
